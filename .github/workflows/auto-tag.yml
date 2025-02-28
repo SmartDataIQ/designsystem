@@ -1,0 +1,39 @@
+name: Auto Tag on Merge To main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  auto-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "latest_tag=${latest_tag}" >> $GITHUB_OUTPUT
+
+      - name: Bump version and push tag
+        id: tag_version
+        run: |
+          latest_tag=${{ steps.get_latest_tag.outputs.latest_tag }}
+          # Remove 'v' prefix for version calculation
+          version=${latest_tag#v}
+          # Split version into array
+          IFS='.' read -ra VERSION_PARTS <<< "$version"
+          # Increment patch version
+          ((VERSION_PARTS[2]++))
+          # Create new version string
+          new_version="v${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}"
+          
+          echo "Creating new tag: $new_version"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git tag -a "$new_version" -m "Auto-generated tag $new_version"
+          git push origin "$new_version" 
