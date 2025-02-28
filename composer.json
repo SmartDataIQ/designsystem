@@ -1,0 +1,38 @@
+{
+    "name": "smartdataiq/designsystem",
+    "description": "SmartDataIQ Design System Components",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Smartdataiq\\Designsystem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SmartDataIQ",
+            "email": "support@smartdataiq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.1|^8.2",
+        "yajra/laravel-datatables": "^11.0" 
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Smartdataiq\\Designsystem\\Providers\\DesignSystemServiceProvider"
+            ],
+            "aliases": {
+                "DesignSystem": "Smartdataiq\\Designsystem\\Facades\\DesignSystemServiceFacade"
+            }
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=designsystem-assets --force"
+        ]
+    }
+} 

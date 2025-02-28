@@ -1,0 +1,13 @@
+@import url('/vendor/designsystem/assets/core/css/light/main.css');
+@import url('/vendor/designsystem/assets/plugins/css/light/perfect-scrollbar/perfect-scrollbar.css');
+@import url('/vendor/designsystem/assets/plugins/src/waves/waves.min.css');
+@import url('/vendor/designsystem/assets/css/light/structure.css');
+/*
+    Importing highlight.js CSS code 
+
+    Just for demo purpose only
+	
+	@Note:-  monokai-sublime.css stylesheet is for highliting the code;
+
+*/
+@import '/vendor/designsystem/assets/plugins/src/highlight/styles/monokai-sublime.css';
