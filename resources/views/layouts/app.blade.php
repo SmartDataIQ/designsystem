@@ -23,6 +23,8 @@
     <link href="{{ asset('vendor/designsystem/assets/plugins/src/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('vendor/designsystem/assets/core/css/light/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/designsystem/assets/core/css/dark/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/designsystem/assets/core/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/designsystem/assets/core/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->    
 
     @yield('header')
