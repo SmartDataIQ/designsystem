@@ -13,7 +13,8 @@ class DesignSystemService
     private $dataTableContent;
 
     private  $navItems;
-
+    private $user;
+    private $userDropdown;
     public function getAppName()
     {
         return env('APP_NAME');
@@ -349,5 +350,38 @@ class DesignSystemService
     }
     public function getDataTable(){
         return $this->dataTableContent;
+    }
+
+    public function setUser($user = null)
+    {
+        if($user){
+            $this->user = $user;
+        }
+        else{
+            $obj = new \stdClass();
+            $obj->name = "Logged in user";
+            $this->user = $obj;
+        }
+    }
+    public function getUser(){
+        return $this->user;
+    }
+
+    public function setUserDropdown($userDropdown = [])
+    {
+        $userDropdownHtml = '';
+        foreach($userDropdown as $dropdown){
+            $userDropdownHtml .= '
+            <div class="dropdown-item">
+                <a href="'.$dropdown['url'].'">
+                    '.$dropdown['icon'].'
+                    <span>'.$dropdown['name'].'</span>
+                </a>
+            </div>';
+        }
+        $this->userDropdown = $userDropdownHtml;
+    }
+    public function getUserDropdown(){
+        return $this->userDropdown;
     }
 }
